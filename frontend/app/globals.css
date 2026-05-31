@@ -1,0 +1,420 @@
+/* Common Styles */
+body {
+    font-family: Arial, sans-serif;
+}
+
+/* Banner */
+.banner {
+    background: url('/imgs/home-header.jpg') center/cover no-repeat;
+    color: white;
+    height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.6);
+}
+
+.banner h5 {
+    font-style: italic;
+}
+
+/* Navbar */
+.navbar-brand img {
+    height: 55px;
+    width: auto;
+    margin-right: 10px;
+}
+
+/* Play Image */
+.play-image {
+    position: relative;
+}
+
+.play-image::after {
+    content: "\f4f4";
+    font-family: "bootstrap-icons";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 3rem;
+    color: white;
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
+}
+
+/* Footer */
+footer {
+    background-color: #1e2a44;
+    color: #ddd;
+    padding: 2rem 1rem;
+}
+
+footer a {
+    color: #ddd;
+    text-decoration: none;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
+
+footer .bi {
+    font-size: 1.4rem;
+    margin-right: 10px;
+}
+
+footer img {
+    height: 70px;
+    width: auto;
+    margin-bottom: 10px;
+}
+
+/* Custom Button */
+.btn-register {
+    background-color: #6c7f91;
+    border-color: #6c7f91;
+    color: #fff;
+    font-weight: 500;
+}
+
+.btn-register:hover {
+    background-color: #5a6a7a;
+    border-color: #5a6a7a;
+    color: #fff;
+}
+
+/* Info List (for denuncia.html) */
+.info-list {
+    list-style: none;
+    padding-left: 0;
+}
+
+.info-list li {
+    position: relative;
+    padding-left: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.info-list li::before {
+    content: "-";
+    position: absolute;
+    left: 0;
+    top: 0;
+    font-weight: bold;
+}
+
+/* PIX Key (for financeiro-2.html) */
+.pix-key {
+    font-family: monospace;
+    word-wrap: break-word;
+    font-size: 0.85rem;
+    line-height: 1.4;
+}
+
+/* Page Specific: Adoption (adoção.html) */
+.animal-card {
+    border: none;
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    text-align: center;
+    color: #fff;
+    cursor: pointer;
+}
+
+.animal-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.animal-card img {
+    width: 100%;
+    height: 110px;
+    object-fit: cover;
+}
+
+.animal-card .info {
+    padding: 6px 0 10px 0;
+}
+
+.animal-card p {
+    font-weight: 600;
+    margin-bottom: 2px;
+    font-size: 0.95rem;
+}
+
+.animal-card small {
+    font-size: 0.8rem;
+    opacity: 0.9;
+}
+
+.bg-azul {
+    background: linear-gradient(180deg, #6b8ec9 0%, #577db9 100%);
+}
+
+.bg-azul-escuro {
+    background: linear-gradient(180deg, #405579 0%, #405579 100%);
+}
+
+.bg-amarelo {
+    background: linear-gradient(180deg, #f5e38e 0%, #e6d476 100%);
+    color: #2b2b2b;
+}
+
+.video-section {
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+    margin: 15px 0;
+}
+
+.video-section img {
+    width: 100%;
+    border-radius: 12px;
+    object-fit: cover;
+    height: 200px;
+}
+
+.video-section .bi-play-circle {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    font-size: 3rem;
+    color: white;
+    transform: translate(-50%, -50%);
+    opacity: 0.9;
+}
+
+/* Page Specific: Brechó (brechó.html) */
+.item-card {
+    background-color: #f3f3f3;
+    border-radius: 10px;
+    overflow: hidden;
+    text-align: center;
+    transition: transform .18s;
+}
+
+.item-card:hover {
+    transform: scale(1.02);
+}
+
+.item-card .img-placeholder {
+    width: 100%;
+    height: 100px;
+    background: #d9d9d9;
+}
+
+.item-card .info {
+    padding: 8px;
+}
+
+.item-card h6 {
+    font-size: 14px;
+    margin-bottom: 2px;
+}
+
+.item-card p {
+    font-size: 13px;
+    color: #555;
+    margin: 0;
+}
+
+/* Page Specific: Brechó-2 (brechó-2.html) */
+.product-container {
+    margin-top: 1rem;
+}
+
+.thumbnail {
+    background-color: #e5e5e5;
+    border-radius: 8px;
+    height: 60px;
+    margin-bottom: 8px;
+}
+
+.main-image {
+    background-color: #dcdcdc;
+    border-radius: 8px;
+    height: 180px;
+}
+
+.price {
+    font-weight: bold;
+    font-size: 1.3rem;
+}
+
+.btn-buy {
+    background-color: #6c7f91;
+    border: none;
+    color: #fff;
+    font-weight: 500;
+}
+
+.btn-buy:hover {
+    background-color: #5a6a7a;
+    color: #fff;
+}
+
+/* Page Specific: Financeiro (financeiro.html) */
+.main-section img {
+    width: 100%;
+    border-radius: 0;
+    object-fit: cover;
+    max-height: 230px;
+}
+
+.main-section h5 {
+    font-weight: bold;
+}
+
+.donation-buttons .btn {
+    width: 100%;
+    border: 1.5px solid #5065A8;
+    color: #5065A8;
+    font-weight: 500;
+    margin-bottom: 0.8rem;
+}
+
+.donation-buttons .btn i {
+    margin-right: 8px;
+}
+
+.donation-buttons .btn:hover {
+    background-color: #5065A8;
+    color: white;
+}
+
+/* === Page Specific: Gazeta (gazeta.html) === */
+
+/* ======== SEÇÃO DE MATÉRIAS (MOBILE) ======== */
+.mobile-news {
+  padding: 0 1rem;
+}
+
+.mobile-news h2 {
+  color: #1e2a44; /* tom azul escuro elegante */
+  font-size: 1.6rem;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+/* ======== CARD DE MATÉRIA ======== */
+.article-card {
+  background-color: #f8f9fa; /* leve tom neutro */
+  border-radius: 12px;
+  padding: 0.8rem;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.08);
+  transition: all 0.25s ease-in-out;
+}
+
+/* Efeito suave ao tocar/passar */
+.article-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.12);
+}
+
+/* ======== IMAGENS ======== */
+.article-card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-bottom: 0.6rem;
+}
+
+/* ======== TÍTULO ======== */
+.article-card h5 {
+  color: #1e2a44;
+  font-size: 1.05rem;
+  font-weight: 600;
+  margin-bottom: 0.4rem;
+}
+
+/* ======== DESCRIÇÃO ======== */
+.article-card p {
+  font-size: 0.9rem;
+  color: #6c757d;
+  line-height: 1.4;
+}
+
+/* ======== RESPONSIVIDADE ======== */
+@media (max-width: 576px) {
+  .mobile-news h2 {
+    font-size: 1.4rem;
+  }
+
+  .article-card img {
+    height: 150px;
+  }
+
+  .article-card h5 {
+    font-size: 1rem;
+  }
+
+  .article-card p {
+    font-size: 0.85rem;
+  }
+}
+
+
+/* Page Specific: Sobre Nós (sobre-nos.html) */
+.team-member-placeholder {
+    background-color: #e9ecef;
+    width: 100%;
+    aspect-ratio: 1/1;
+    border-radius: 5px;
+}
+
+.team-slider-wrapper {
+    overflow-x: auto;
+    scrollbar-width: none;
+}
+
+.team-slider-wrapper::-webkit-scrollbar {
+    display: none;
+}
+
+.team-slider {
+    display: flex;
+    flex-wrap: nowrap;
+}
+
+.team-card-col {
+    flex: 0 0 33.333333%;
+    max-width: 33.333333%;
+    padding: 0 8px;
+}
+
+/* Media Queries */
+@media (max-width: 767px) {
+    .side-article-placeholder {
+        height: 150px;
+    }
+
+    .featured-article-placeholder {
+        min-height: 250px;
+    }
+
+    .team-card-col {
+        flex: 0 0 50%;
+        max-width: 50%;
+    }
+}
+
+@media (max-width: 576px) {
+    .navbar-brand img {
+        height: 45px;
+    }
+
+    footer img {
+        height: 60px;
+    }
+
+    .item-card .img-placeholder {
+        height: 90px;
+    }
+}
+
+
