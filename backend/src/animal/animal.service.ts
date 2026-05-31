@@ -1,4 +1,4 @@
-import { Inject, Injectable, NotFoundException } from "@nestjs/common";
+import { BadRequestException, Inject, Injectable, NotFoundException } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 import { AnimalEntity } from "./entitites/animal";
 import { Repository } from "typeorm";
@@ -8,6 +8,8 @@ import { UpdateAnimalDto } from "./dto/update-animal.dto";
 import { BreedService } from "src/breed/breed.service";
 import { BreedEntity } from "src/breed/entities/breed";
 import { ANIMAL_SELECT } from "./animal.select";
+import * as path from 'path';
+import * as fs from 'fs/promises';
 
 @Injectable()
 export class AnimalService {
@@ -66,6 +68,19 @@ export class AnimalService {
         }
     }
 
+    async upload(file: Express.Multer.File) {
+        
+        if (!file) throw new BadRequestException('Nenhum arquivo enviado');
+
+        const fileExtesion = path.extname(file.originalname).toLocaleLowerCase().substring(1);
+        const fileName = `${path.parse(file.originalname).name}_${Date.now()}.${fileExtesion}`;
+        const fileFullPath = path.resolve(process.cwd(), 'pictures', fileName);
+
+        await fs.writeFile(fileFullPath, file.buffer);
+
+        return file;
+    }
+
     async update(id: number, body: UpdateAnimalDto) {
         const animal = await this.animalRepository.findOne({
             where: { id },
@@ -97,11 +112,8 @@ export class AnimalService {
         return this.animalRepository.save(animal); //salva
     }
 
-
     async delete(id: number) {
-        const animal = await this.animalRepository.findOne({
-            where: { id },
-        });
+        const animal = await this.getOne(id);
 
         if (!animal) throw new NotFoundException('Animal não encontrado!');
 

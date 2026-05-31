@@ -48,11 +48,7 @@ export class ReportService {
     }
 
     async update(id: number, body: UpdateReportDto) {
-        const report = await this.reportRepository.findOne({
-            where: { id },
-        });
-
-        if (!report) throw new NotFoundException('Denúncia não encontrada');
+        const report = await this.getOne(id);
 
         const updatedReport = this.reportRepository.merge(report, body);
 
@@ -60,11 +56,7 @@ export class ReportService {
     }
 
     async delete(id: number) {
-        const report = await this.reportRepository.findOne({
-            where: { id },
-        })
-
-        if (!report) throw new NotFoundException('Denúncia não encontrada')
+        const report = await this.getOne(id);
 
         return await this.reportRepository.remove(report);
     }

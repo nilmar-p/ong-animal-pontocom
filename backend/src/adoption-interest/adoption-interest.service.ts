@@ -56,12 +56,7 @@ export class AdoptionInterestService {
     }
 
     async update(id: number, body: UpdateAdoptionInterestDto) {
-        const adoptionInterest = await this.adoptionInterestRepository.findOne({
-            where: { id },
-        });
-
-        if (!adoptionInterest) throw new NotFoundException('Interesse em Adoção não encontrado');
-
+        const adoptionInterest = await this.getOne(id);
 
         const updatedAdoptionInterest = this.adoptionInterestRepository.merge(adoptionInterest, body);
 
@@ -84,9 +79,7 @@ export class AdoptionInterestService {
         await Promise.all(
             ids.map(async (item) => {
                 const id = Number(item);
-                const selectedAdoptionInterest = await this.adoptionInterestRepository.findOne({
-                    where: { id },
-                });
+                const selectedAdoptionInterest = await this.getOne(id);
 
                 if (selectedAdoptionInterest) {
                     await this.adoptionInterestRepository.delete(selectedAdoptionInterest);
@@ -96,11 +89,7 @@ export class AdoptionInterestService {
     }
 
     async delete(id: number) {
-        const adoptionInterest = await this.adoptionInterestRepository.find({
-            where: { id },
-        });
-
-        if (!adoptionInterest) throw new NotFoundException('Interesse em Adoção não encontrado')
+        const adoptionInterest = await this.getOne(id);
 
         return await this.adoptionInterestRepository.remove(adoptionInterest);
     }

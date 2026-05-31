@@ -48,11 +48,7 @@ export class ProductThriftService {
     }
 
     async update(id: number, body: UpdateProductThriftDto) {
-        const product = await this.productRepository.findOne({
-            where: { id },
-        });
-
-        if (!product) throw new NotFoundException('Produto não encontrado');
+        const product = await this.getOne(id);
 
         const updatedProduct = this.productRepository.merge(product, body);
 
@@ -60,11 +56,7 @@ export class ProductThriftService {
     }
 
     async delete(id: number) {
-        const product = await this.productRepository.findOne({
-            where: { id },
-        });
-
-        if (!product) throw new NotFoundException('Produto não encontrado');
+        const product = await this.getOne(id);
 
         return await this.productRepository.remove(product);
     }

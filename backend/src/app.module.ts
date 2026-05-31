@@ -11,6 +11,8 @@ import { ArticleModule } from './article/article.module';
 import { ProductThriftModule } from './product-thrift-store/product-thrift.module';
 import { OrderThriftModule } from './order-thrift-store/order-thrift.module';
 import { AdministratorModule } from './administrator/administrator.module';
+import { ServeStaticModule } from '@nestjs/serve-static';
+import path from 'path';
 
 @Module({
   imports: [
@@ -23,6 +25,10 @@ import { AdministratorModule } from './administrator/administrator.module';
       database: 'animal_pontocom',
       autoLoadEntities: true,
       synchronize: true,
+    }), 
+    ServeStaticModule.forRoot({
+      rootPath: path.resolve(process.cwd(), 'pictures'),
+      serveRoot: '/img/pictures', // http://localhost:3005/img/pictures/
     }),
     AnimalModule,
     AdoptionInterestModule,
