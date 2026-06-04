@@ -8,8 +8,7 @@ import { UpdateAnimalDto } from "./dto/update-animal.dto";
 import { BreedService } from "src/breed/breed.service";
 import { BreedEntity } from "src/breed/entities/breed";
 import { ANIMAL_SELECT } from "./animal.select";
-import * as path from 'path';
-import * as fs from 'fs/promises';
+import { FileStorageService } from "src/common/utils/file-upload.util";
 
 @Injectable()
 export class AnimalService {
@@ -21,6 +20,8 @@ export class AnimalService {
         private readonly breedRepository: Repository<BreedEntity>,
 
         private readonly breedService: BreedService,
+
+        private readonly uploadService: FileStorageService,
     ) { }
 
     async getAll(pagination: PaginationDto) {
@@ -69,16 +70,7 @@ export class AnimalService {
     }
 
     async upload(file: Express.Multer.File) {
-        
-        if (!file) throw new BadRequestException('Nenhum arquivo enviado');
-
-        const fileExtesion = path.extname(file.originalname).toLocaleLowerCase().substring(1);
-        const fileName = `${path.parse(file.originalname).name}_${Date.now()}.${fileExtesion}`;
-        const fileFullPath = path.resolve(process.cwd(), 'pictures', fileName);
-
-        await fs.writeFile(fileFullPath, file.buffer);
-
-        return file;
+        return this.uploadService.upload(file);
     }
 
     async update(id: number, body: UpdateAnimalDto) {

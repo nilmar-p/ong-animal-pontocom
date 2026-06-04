@@ -6,12 +6,15 @@ import { CreateReportDto } from "./dto/create-report.dto";
 import { UpdateReportDto } from "./dto/update-report.dto";
 import { PaginationDto } from "src/common/dto/pagination.dto";
 import { REPORT_SELECT } from "./report.select";
+import { FileStorageService } from "src/common/utils/file-upload.util";
 
 @Injectable()
 export class ReportService {
     constructor(
         @InjectRepository(ReportEntity)
-        private readonly reportRepository: Repository<ReportEntity>
+        private readonly reportRepository: Repository<ReportEntity>,
+
+        private readonly uploadService: FileStorageService,
     ) { }
 
     async getAll(pagination: PaginationDto) {
@@ -59,5 +62,9 @@ export class ReportService {
         const report = await this.getOne(id);
 
         return await this.reportRepository.remove(report);
+    }
+
+    async upload(files: Express.Multer.File[]) {
+        return this.uploadService.uploadMany(files);
     }
 }

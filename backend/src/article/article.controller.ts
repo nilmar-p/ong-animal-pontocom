@@ -1,8 +1,10 @@
-import { Body, Controller, Delete, Get, Param, Post, Put, Query } from "@nestjs/common";
+import { Body, Controller, Delete, Get, Param, Post, Put, Query, UploadedFile, UseInterceptors } from "@nestjs/common";
 import { ArticleService } from "./article.service";
 import { CreateArticleDto } from "./dto/create-article.dto";
 import { UpdateArticleDto } from "./dto/update-article.dto";
 import { PaginationDto } from "src/common/dto/pagination.dto";
+import { FileInterceptor } from "@nestjs/platform-express";
+import { imageUploadOptions } from "src/common/config/upload.config";
 
 @Controller('article')
 export class ArticleController {
@@ -33,5 +35,11 @@ export class ArticleController {
     @Delete(':id')
     delete(@Param('id') id: number) {
         return this.articleService.delete(id);
+    }
+
+    @Post('upload')
+    @UseInterceptors(FileInterceptor('articleImg', imageUploadOptions(3)))
+    upload(@UploadedFile() file: Express.Multer.File) {
+        return await this.articleService.upload(file);
     }
 }

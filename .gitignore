@@ -3,6 +3,8 @@ dist
 node_modules
 build
 tmp
+backend/pictures/*
+!backend/pictures/.gitkeep
 
 # Logs
 logs

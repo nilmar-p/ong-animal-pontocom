@@ -1,0 +1,397 @@
+/* [project]/app/globals.css [app-client] (css) */
+body {
+  font-family: Arial, sans-serif;
+}
+
+.banner {
+  color: #fff;
+  text-shadow: 1px 1px 5px #0009;
+  background: url("/imgs/home-header.jpg") center / cover no-repeat;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 300px;
+  display: flex;
+}
+
+.banner h5 {
+  font-style: italic;
+}
+
+.navbar-brand img {
+  width: auto;
+  height: 55px;
+  margin-right: 10px;
+}
+
+.play-image {
+  position: relative;
+}
+
+.play-image:after {
+  content: "";
+  color: #fff;
+  text-shadow: 0 0 10px #000000b3;
+  font-family: bootstrap-icons;
+  font-size: 3rem;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+footer {
+  color: #ddd;
+  background-color: #1e2a44;
+  padding: 2rem 1rem;
+}
+
+footer a {
+  color: #ddd;
+  text-decoration: none;
+}
+
+footer a:hover {
+  text-decoration: underline;
+}
+
+footer .bi {
+  margin-right: 10px;
+  font-size: 1.4rem;
+}
+
+footer img {
+  width: auto;
+  height: 70px;
+  margin-bottom: 10px;
+}
+
+.btn-register {
+  color: #fff;
+  background-color: #6c7f91;
+  border-color: #6c7f91;
+  font-weight: 500;
+}
+
+.btn-register:hover {
+  color: #fff;
+  background-color: #5a6a7a;
+  border-color: #5a6a7a;
+}
+
+.info-list {
+  padding-left: 0;
+  list-style: none;
+}
+
+.info-list li {
+  margin-bottom: .5rem;
+  padding-left: 1.5rem;
+  position: relative;
+}
+
+.info-list li:before {
+  content: "-";
+  font-weight: bold;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.pix-key {
+  word-wrap: break-word;
+  font-family: monospace;
+  font-size: .85rem;
+  line-height: 1.4;
+}
+
+.animal-card {
+  text-align: center;
+  color: #fff;
+  cursor: pointer;
+  border: none;
+  border-radius: 14px;
+  transition: transform .2s, box-shadow .2s;
+  overflow: hidden;
+  box-shadow: 0 2px 6px #00000026;
+}
+
+.animal-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 10px #0003;
+}
+
+.animal-card img {
+  object-fit: cover;
+  width: 100%;
+  height: 110px;
+}
+
+.animal-card .info {
+  padding: 6px 0 10px;
+}
+
+.animal-card p {
+  margin-bottom: 2px;
+  font-size: .95rem;
+  font-weight: 600;
+}
+
+.animal-card small {
+  opacity: .9;
+  font-size: .8rem;
+}
+
+.bg-azul {
+  background: linear-gradient(#6b8ec9 0%, #577db9 100%);
+}
+
+.bg-azul-escuro {
+  background: linear-gradient(#405579 0% 100%);
+}
+
+.bg-amarelo {
+  color: #2b2b2b;
+  background: linear-gradient(#f5e38e 0%, #e6d476 100%);
+}
+
+.video-section {
+  border-radius: 12px;
+  margin: 15px 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.video-section img {
+  object-fit: cover;
+  border-radius: 12px;
+  width: 100%;
+  height: 200px;
+}
+
+.video-section .bi-play-circle {
+  color: #fff;
+  opacity: .9;
+  font-size: 3rem;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.item-card {
+  text-align: center;
+  background-color: #f3f3f3;
+  border-radius: 10px;
+  transition: transform .18s;
+  overflow: hidden;
+}
+
+.item-card:hover {
+  transform: scale(1.02);
+}
+
+.item-card .img-placeholder {
+  background: #d9d9d9;
+  width: 100%;
+  height: 100px;
+}
+
+.item-card .info {
+  padding: 8px;
+}
+
+.item-card h6 {
+  margin-bottom: 2px;
+  font-size: 14px;
+}
+
+.item-card p {
+  color: #555;
+  margin: 0;
+  font-size: 13px;
+}
+
+.product-container {
+  margin-top: 1rem;
+}
+
+.thumbnail {
+  background-color: #e5e5e5;
+  border-radius: 8px;
+  height: 60px;
+  margin-bottom: 8px;
+}
+
+.main-image {
+  background-color: #dcdcdc;
+  border-radius: 8px;
+  height: 180px;
+}
+
+.price {
+  font-size: 1.3rem;
+  font-weight: bold;
+}
+
+.btn-buy {
+  color: #fff;
+  background-color: #6c7f91;
+  border: none;
+  font-weight: 500;
+}
+
+.btn-buy:hover {
+  color: #fff;
+  background-color: #5a6a7a;
+}
+
+.main-section img {
+  object-fit: cover;
+  border-radius: 0;
+  width: 100%;
+  max-height: 230px;
+}
+
+.main-section h5 {
+  font-weight: bold;
+}
+
+.donation-buttons .btn {
+  color: #5065a8;
+  border: 1.5px solid #5065a8;
+  width: 100%;
+  margin-bottom: .8rem;
+  font-weight: 500;
+}
+
+.donation-buttons .btn i {
+  margin-right: 8px;
+}
+
+.donation-buttons .btn:hover {
+  color: #fff;
+  background-color: #5065a8;
+}
+
+.mobile-news {
+  padding: 0 1rem;
+}
+
+.mobile-news h2 {
+  color: #1e2a44;
+  text-align: center;
+  margin-bottom: 1rem;
+  font-size: 1.6rem;
+  font-weight: 700;
+}
+
+.article-card {
+  background-color: #f8f9fa;
+  border-radius: 12px;
+  padding: .8rem;
+  transition: all .25s ease-in-out;
+  box-shadow: 0 2px 5px #00000014;
+}
+
+.article-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 12px #0000001f;
+}
+
+.article-card img {
+  object-fit: cover;
+  border-radius: 10px;
+  width: 100%;
+  height: 180px;
+  margin-bottom: .6rem;
+}
+
+.article-card h5 {
+  color: #1e2a44;
+  margin-bottom: .4rem;
+  font-size: 1.05rem;
+  font-weight: 600;
+}
+
+.article-card p {
+  color: #6c757d;
+  font-size: .9rem;
+  line-height: 1.4;
+}
+
+@media (max-width: 576px) {
+  .mobile-news h2 {
+    font-size: 1.4rem;
+  }
+
+  .article-card img {
+    height: 150px;
+  }
+
+  .article-card h5 {
+    font-size: 1rem;
+  }
+
+  .article-card p {
+    font-size: .85rem;
+  }
+}
+
+.team-member-placeholder {
+  aspect-ratio: 1;
+  background-color: #e9ecef;
+  border-radius: 5px;
+  width: 100%;
+}
+
+.team-slider-wrapper {
+  scrollbar-width: none;
+  overflow-x: auto;
+}
+
+.team-slider-wrapper::-webkit-scrollbar {
+  display: none;
+}
+
+.team-slider {
+  flex-wrap: nowrap;
+  display: flex;
+}
+
+.team-card-col {
+  flex: 0 0 33.3333%;
+  max-width: 33.3333%;
+  padding: 0 8px;
+}
+
+@media (max-width: 767px) {
+  .side-article-placeholder {
+    height: 150px;
+  }
+
+  .featured-article-placeholder {
+    min-height: 250px;
+  }
+
+  .team-card-col {
+    flex: 0 0 50%;
+    max-width: 50%;
+  }
+}
+
+@media (max-width: 576px) {
+  .navbar-brand img {
+    height: 45px;
+  }
+
+  footer img {
+    height: 60px;
+  }
+
+  .item-card .img-placeholder {
+    height: 90px;
+  }
+}
+
+/*# sourceMappingURL=app_globals_css_bad6b30c._.single.css.map*/

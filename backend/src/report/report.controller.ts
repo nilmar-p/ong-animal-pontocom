@@ -1,8 +1,10 @@
-import { Body, Controller, Delete, Get, Param, Post, Put, Query } from "@nestjs/common";
+import { Body, Controller, Delete, Get, Param, Post, Put, Query, UploadedFile, UploadedFiles, UseInterceptors } from "@nestjs/common";
 import { ReportService } from "./report.service";
 import { CreateReportDto } from "./dto/create-report.dto";
 import { PaginationDto } from "src/common/dto/pagination.dto";
 import { UpdateReportDto } from "./dto/update-report.dto";
+import { FileInterceptor, FilesInterceptor } from "@nestjs/platform-express";
+import { imageUploadOptions, reportUploadOptions } from "src/common/config/upload.config";
 
 @Controller('report')
 export class ReportController {
@@ -31,5 +33,11 @@ export class ReportController {
     @Delete(':id')
     delete(@Param('id') id: number) {
         return this.reportService.delete(id);
+    }
+
+    @Post('upload')
+    @UseInterceptors(FilesInterceptor('files', 3, reportUploadOptions()))
+    upload(@UploadedFiles() files: Express.Multer.File[],) {
+        return this.reportService.upload(files);
     }
 }

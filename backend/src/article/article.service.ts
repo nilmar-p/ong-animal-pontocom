@@ -6,12 +6,16 @@ import { ARTICLE_SELECT } from "./article.select";
 import { Injectable, NotFoundException } from "@nestjs/common";
 import { UpdateArticleDto } from "./dto/update-article.dto";
 import { InjectRepository } from "@nestjs/typeorm";
+import { FileStorageService } from "src/common/utils/file-upload.util";
 
 @Injectable()
 export class ArticleService {
     constructor(
         @InjectRepository(ArticleEntity)
         private readonly articleRepository: Repository<ArticleEntity>,
+
+        private readonly uploadService: FileStorageService,
+
     ) { }
 
     async getAll(pagination: PaginationDto) {
@@ -59,5 +63,9 @@ export class ArticleService {
         const article = await this.getOne(id)
 
         return await this.articleRepository.remove(article);
+    }
+
+    async upload(file: Express.Multer.File) {
+        return this.uploadService.upload({ file });
     }
 }
