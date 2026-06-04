@@ -5,6 +5,7 @@ build
 tmp
 backend/pictures/*
 !backend/pictures/.gitkeep
+frontend/.next/
 
 # Logs
 logs
