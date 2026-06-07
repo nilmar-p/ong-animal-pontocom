@@ -1,4 +1,5 @@
-import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import { ProductFileEntity } from "src/file/entities/product-file.entity";
+import { Column, CreateDateColumn, Entity, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 
 @Entity()
 export class ProductThriftEntity {
@@ -25,16 +26,13 @@ export class ProductThriftEntity {
     price: string;
 
     @Column({
-        type: 'varchar',
-        length: 300,
-    })
-    photoUrl: string;
-
-    @Column({
         type: 'boolean',
         default: false,
     })
     sold: boolean;
+
+    @OneToMany(() => ProductFileEntity, (pf) => pf.product, { cascade: true })
+    productFiles: ProductFileEntity[];
 
     @CreateDateColumn()
     createdAt: Date;

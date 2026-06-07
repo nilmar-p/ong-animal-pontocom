@@ -6,9 +6,12 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { JwtModule } from '@nestjs/jwt';
 import { PassportModule } from '@nestjs/passport';
 import { JwtStrategy } from 'src/common/strategies/jwt.strategy';
+import { AdministratorFileEntity } from 'src/file/entities/administrator-file.entity';
+import { FileModule } from 'src/file/file.module';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([AdministratorEntity]),
+  imports: [TypeOrmModule.forFeature([AdministratorEntity, AdministratorFileEntity]),
+  FileModule,
   JwtModule.register({
     secret: 'CHAVES',
     signOptions: {

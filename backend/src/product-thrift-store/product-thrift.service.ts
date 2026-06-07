@@ -6,7 +6,6 @@ import { PaginationDto } from "src/common/dto/pagination.dto";
 import { PRODUCT_SELECT } from "./product.select";
 import { CreateProductThriftDto } from "./dto/create-product-thrift.dto";
 import { UpdateProductThriftDto } from "./dto/update-product-thrift.dto";
-import { FileStorageService } from "src/common/utils/file-upload.util";
 
 @Injectable()
 export class ProductThriftService {
@@ -14,7 +13,6 @@ export class ProductThriftService {
         @InjectRepository(ProductThriftEntity)
         private readonly productRepository: Repository<ProductThriftEntity>,
 
-        private readonly uploadService: FileStorageService,
     ) { }
 
     async getAll(pagination: PaginationDto) {
@@ -65,6 +63,6 @@ export class ProductThriftService {
     }
 
     async upload(file: Express.Multer.File) {
-        return this.uploadService.upload(file);
+        
     }
 }

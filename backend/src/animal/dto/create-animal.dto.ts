@@ -12,11 +12,6 @@ export class CreateAnimalDto {
     breedId: number;
 
     @IsString()
-    @IsNotEmpty()
-    @MaxLength(300)
-    photoUrl: string;
-
-    @IsString()
     @MaxLength(300)
     description: string;
 }

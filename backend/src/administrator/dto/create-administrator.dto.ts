@@ -1,4 +1,3 @@
-import { Transform } from "class-transformer";
 import { IsNotEmpty, IsString, IsEmail, MaxLength } from "class-validator";
 
 export class CreateAdministratorDto {

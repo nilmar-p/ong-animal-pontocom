@@ -12,6 +12,7 @@ import { ProductThriftModule } from './product-thrift-store/product-thrift.modul
 import { OrderThriftModule } from './order-thrift-store/order-thrift.module';
 import { AdministratorModule } from './administrator/administrator.module';
 import { ServeStaticModule } from '@nestjs/serve-static';
+import { FileModule } from './file/file.module';
 import path from 'path';
 
 @Module({
@@ -28,7 +29,7 @@ import path from 'path';
     }), 
     ServeStaticModule.forRoot({
       rootPath: path.resolve(process.cwd(), 'pictures'),
-      serveRoot: '/img/pictures', // http://localhost:3005/img/pictures/
+      serveRoot: '/resource/files', // http://localhost:3005/img/pictures/
     }),
     AnimalModule,
     AdoptionInterestModule,
@@ -39,6 +40,7 @@ import path from 'path';
     ProductThriftModule,
     OrderThriftModule,
     AdministratorModule,
+    FileModule,
   ],
   controllers: [AppController],
   providers: [AppService],

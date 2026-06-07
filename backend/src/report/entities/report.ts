@@ -1,5 +1,6 @@
-import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import { Column, CreateDateColumn, Entity, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 import { ReportSubject } from "../enums/report-subject.enum";
+import { ReportFileEntity } from "src/file/entities/report-file.entity";
 
 @Entity()
 export class ReportEntity {
@@ -35,6 +36,9 @@ export class ReportEntity {
         default: false,
     })
     solved: boolean;
+
+    @OneToMany(() => ReportFileEntity, (rf) => rf.report, { cascade: true })
+    reportFiles: ReportFileEntity[];
 
     @CreateDateColumn()
     createdAt: Date;

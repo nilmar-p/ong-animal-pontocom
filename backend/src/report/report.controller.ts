@@ -36,7 +36,7 @@ export class ReportController {
     }
 
     @Post('upload')
-    @UseInterceptors(FilesInterceptor('files', 3, reportUploadOptions()))
+    @UseInterceptors(FilesInterceptor('reportFiles', 3, reportUploadOptions()))
     upload(@UploadedFiles() files: Express.Multer.File[],) {
         return this.reportService.upload(files);
     }

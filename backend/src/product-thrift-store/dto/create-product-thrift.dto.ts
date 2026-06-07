@@ -14,9 +14,4 @@ export class CreateProductThriftDto {
     @IsNotEmpty()
     @IsString()
     price: string;
-
-    @IsNotEmpty()
-    @IsString()
-    @MaxLength(300)
-    photoUrl: string;
 }

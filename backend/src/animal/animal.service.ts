@@ -8,7 +8,6 @@ import { UpdateAnimalDto } from "./dto/update-animal.dto";
 import { BreedService } from "src/breed/breed.service";
 import { BreedEntity } from "src/breed/entities/breed";
 import { ANIMAL_SELECT } from "./animal.select";
-import { FileStorageService } from "src/common/utils/file-upload.util";
 
 @Injectable()
 export class AnimalService {
@@ -20,8 +19,6 @@ export class AnimalService {
         private readonly breedRepository: Repository<BreedEntity>,
 
         private readonly breedService: BreedService,
-
-        private readonly uploadService: FileStorageService,
     ) { }
 
     async getAll(pagination: PaginationDto) {
@@ -70,7 +67,6 @@ export class AnimalService {
     }
 
     async upload(file: Express.Multer.File) {
-        return this.uploadService.upload(file);
     }
 
     async update(id: number, body: UpdateAnimalDto) {
@@ -86,7 +82,6 @@ export class AnimalService {
         this.animalRepository.merge(animal, {
             name: body.name,
             description: body.description,
-            photoUrl: body.photoUrl,
         }); //aq já está mergeando os dados simples (sem o breed que eh um objeto (fk))
 
         if (body.breedId) {
