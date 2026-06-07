@@ -1,4 +1,4 @@
-import { Body, UseInterceptors, Controller, Delete, Get, Param, Post, Put, Query, UploadedFile } from "@nestjs/common";
+import { Body, Controller, Delete, Get, Param, ParseIntPipe, Post, Put, Query, UploadedFile, UseInterceptors } from "@nestjs/common";
 import { AnimalService } from "./animal.service";
 import { CreateAnimalDto } from "./dto/create-animal.dto";
 import { PaginationDto } from "src/common/dto/pagination.dto";
@@ -8,17 +8,11 @@ import { imageUploadOptions } from "src/common/config/upload.config";
 
 @Controller('animal')
 export class AnimalController {
-    constructor(private readonly animalService: AnimalService) { }
+    constructor(private readonly animalService: AnimalService) {}
 
     @Post()
     create(@Body() body: CreateAnimalDto) {
         return this.animalService.create(body);
-    }
-
-    @Post('upload')
-    @UseInterceptors(FileInterceptor('animalPicture', imageUploadOptions(3)))
-    async upload(@UploadedFile() file: Express.Multer.File){
-        return await this.animalService.upload(file);
     }
 
     @Get('all')
@@ -27,17 +21,39 @@ export class AnimalController {
     }
 
     @Get(':id')
-    getOne(@Param('id') id: number) {
+    getOne(@Param('id', ParseIntPipe) id: number) {
         return this.animalService.getOne(id);
     }
 
     @Put(':id')
-    update(@Param('id') id: number, @Body() body: UpdateAnimalDto) {
+    update(@Param('id', ParseIntPipe) id: number, @Body() body: UpdateAnimalDto) {
         return this.animalService.update(id, body);
     }
 
     @Delete(':id')
-    delete(@Param('id') id: number) {
+    delete(@Param('id', ParseIntPipe) id: number) {
         return this.animalService.delete(id);
+    }
+
+    @Post(':id/files')
+    @UseInterceptors(FileInterceptor('file', imageUploadOptions(3)))
+    uploadFile(
+        @Param('id', ParseIntPipe) id: number,
+        @UploadedFile() file: Express.Multer.File,
+    ) {
+        return this.animalService.uploadFile(id, file);
+    }
+
+    @Get(':id/files')
+    getFiles(@Param('id', ParseIntPipe) id: number) {
+        return this.animalService.getFiles(id);
+    }
+
+    @Delete(':id/files/:fileId')
+    unlinkFile(
+        @Param('id', ParseIntPipe) id: number,
+        @Param('fileId', ParseIntPipe) fileId: number,
+    ) {
+        return this.animalService.unlinkFile(id, fileId);
     }
 }

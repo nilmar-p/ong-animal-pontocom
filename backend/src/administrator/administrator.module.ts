@@ -11,9 +11,9 @@ import { FileModule } from 'src/file/file.module';
 
 @Module({
   imports: [TypeOrmModule.forFeature([AdministratorEntity, AdministratorFileEntity]),
-  FileModule,
+    FileModule,
   JwtModule.register({
-    secret: 'CHAVES',
+    secret: process.env.JWT_SECRET,
     signOptions: {
       expiresIn: '1d'
     }

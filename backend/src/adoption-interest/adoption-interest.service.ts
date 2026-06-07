@@ -15,9 +15,6 @@ export class AdoptionInterestService {
         @InjectRepository(AdoptionInterestEntity)
         private readonly adoptionInterestRepository: Repository<AdoptionInterestEntity>,
 
-        @InjectRepository(AnimalEntity)
-        private readonly animalRepository: Repository<AnimalEntity>,
-
         private readonly animalService: AnimalService,
     ) { }
 
@@ -54,23 +51,18 @@ export class AdoptionInterestService {
 
         return await this.adoptionInterestRepository.save(adoptionInterest);
     }
-
+    
     async update(id: number, body: UpdateAdoptionInterestDto) {
         const adoptionInterest = await this.getOne(id);
 
-        const updatedAdoptionInterest = this.adoptionInterestRepository.merge(adoptionInterest, body);
+        const updated = this.adoptionInterestRepository.merge(adoptionInterest, body);
 
         if (body.animalId) {
-            const animal = await this.animalRepository.findOne({
-                where: { id: body.animalId }
-            })
-
-            if (!animal) throw new NotFoundException('Animal não encontrado')
-
-            updatedAdoptionInterest.animal = { id: body.animalId } as any;
+            const animal = await this.animalService.getOne(body.animalId);
+            updated.animal = animal;
         }
 
-        return await this.adoptionInterestRepository.save(updatedAdoptionInterest);
+        return this.adoptionInterestRepository.save(updated);
     }
 
     async deleteList(list) {

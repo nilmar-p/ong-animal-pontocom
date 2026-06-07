@@ -14,22 +14,24 @@ import { AdministratorModule } from './administrator/administrator.module';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { FileModule } from './file/file.module';
 import path from 'path';
+import { ConfigModule } from '@nestjs/config';
 
 @Module({
   imports: [
+    ConfigModule.forRoot({ isGlobal: true }),
     TypeOrmModule.forRoot({
       type: 'postgres',
-      host: 'localhost',
-      port: 5432,
-      username: 'postgres',
-      password: 'postgresql',
-      database: 'animal_pontocom',
+      host: process.env.DB_HOST,
+      port: +(process.env.DB_PORT ?? '5432'),
+      username: process.env.DB_USERNAME,
+      password: process.env.DB_PASSWORD,
+      database: process.env.DB_NAME,
       autoLoadEntities: true,
       synchronize: true,
-    }), 
+    }),
     ServeStaticModule.forRoot({
-      rootPath: path.resolve(process.cwd(), 'pictures'),
-      serveRoot: '/resource/files', // http://localhost:3005/img/pictures/
+      rootPath: path.resolve(process.cwd(), 'files'),
+      serveRoot: '/resource/files', // 
     }),
     AnimalModule,
     AdoptionInterestModule,

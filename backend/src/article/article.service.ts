@@ -61,13 +61,10 @@ export class ArticleService {
 
     //
     async uploadFile(articleId: number, file: Express.Multer.File) {
-        const article = await this.articleRepository.findOne({ where: { id: articleId } });
-        if (!article) throw new NotFoundException('Artigo não encontrado');
+        const article = await this.getOne(articleId); // já traz articleFiles
 
-        const fileCount = await this.articleFileRepository.count({
-            where: { article: { id: articleId } },
-        });
-        if (fileCount >= 5) throw new BadRequestException('Limite de 5 imagens atingido');
+        if (article.articleFiles.length >= 5)
+            throw new BadRequestException('Limite de 5 imagens atingido');
 
         const savedFile = await this.fileStorageService.upload(file);
 

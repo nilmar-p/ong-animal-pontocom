@@ -21,7 +21,8 @@ lerna-debug.log*
 .env.development
 .env.test
 .env.production
-.env.local
+.env.localgit rm --cached backend/.env.local
+
 
 # temp directory
 .temp
